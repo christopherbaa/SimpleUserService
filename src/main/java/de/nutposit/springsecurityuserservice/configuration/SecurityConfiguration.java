@@ -14,12 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private final AuthenticationConfiguration configuration;
-
-    public SecurityConfiguration(@Autowired AuthenticationConfiguration configuration) {
-        this.configuration = configuration;
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -30,11 +24,6 @@ public class SecurityConfiguration {
                 .httpBasic();
 
         return http.build();
-    }
-
-    @Bean
-    AuthenticationManager authenticationManager() throws Exception {
-        return configuration.getAuthenticationManager();
     }
 
     @Bean
